@@ -519,8 +519,22 @@ function calcular() {
         <h3>Relatório de Produção</h3>
         <p><strong>🛠️ Itens Produzidos:</strong></p>
         <ul>
-            ${itensEscolhidos.map((item) => `<li>${item}</li>`).join("")}
-        </ul>
+         ${itensEscolhidos
+           .map((item) => {
+             const [quantidade, nome] = item
+               .split("x")
+               .map((str) => str.trim());
+             const itemKey = Object.keys(itens).find(
+               (key) => itens[key].nome === nome
+             );
+             const valorItem = parseInt(quantidade) * (precos[itemKey] || 0);
+             return `<li>${item} - $ ${valorItem.toLocaleString("pt-BR", {
+               minimumFractionDigits: 2,
+               maximumFractionDigits: 2,
+             })}</li>`;
+           })
+           .join("")} 
+          </ul>
         <p><strong>📦 Total Geral:</strong> ${totalItens} itens</p>
     `;
 
@@ -566,7 +580,7 @@ function calcular() {
             </div>
             <div style="text-align: center; background-color: #111; padding: 12px 20px; border-radius: 10px; border: 2px solid #00ff99;">
                 <h4 style="margin-bottom: 8px; color: #00ff99;">💰 Valor Total</h4>
-                <p style="font-size: 18px; font-weight: bold; color: #00ff99;">R$ ${valorTotal.toLocaleString(
+                <p style="font-size: 18px; font-weight: bold; color: #00ff99;">$ ${valorTotal.toLocaleString(
                   "pt-BR",
                   { minimumFractionDigits: 2, maximumFractionDigits: 2 }
                 )}</p>
