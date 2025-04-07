@@ -376,10 +376,9 @@ function gerarHTMLCategorias() {
       categoriaDiv.setAttribute("onclick", "toggleCategoria(this)");
 
       const categoriaHeader = document.createElement("h2");
-      categoriaHeader.style.cssText =
-        "display: flex; align-items: center; justify-content: center; gap: 8px; text-align: center;";
+      categoriaHeader.className = "categoria-header";
       categoriaHeader.innerHTML = `
-                <img src="${categoria.ico}" alt="${categoria.nome}" class="categoria-ico" style="width: 32px; height: 32px;" onerror="this.style.display='none'" />
+                <img src="${categoria.ico}" alt="${categoria.nome}" class="categoria-ico" onerror="this.style.display='none'" />
                 <span>${categoria.nome}</span>
             `;
       categoriaDiv.appendChild(categoriaHeader);
@@ -391,56 +390,27 @@ function gerarHTMLCategorias() {
       itensCategoria.forEach(([itemKey, item]) => {
         const itemContainer = document.createElement("div");
         itemContainer.className = "item-container";
-        itemContainer.style.cssText = `
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    background-color: rgba(255, 255, 255, 0.1);
-                    padding: 10px;
-                    border-radius: 8px;
-                    margin: 10px;
-                `;
 
         const itemImage = document.createElement("img");
         itemImage.src = item.ico;
         itemImage.alt = item.nome;
-        itemImage.style.cssText =
-          "width: 48px; height: 48px; margin-bottom: 8px;";
+        itemImage.className = "item-image";
         itemImage.onerror = function () {
           this.style.display = "none";
         };
 
         const itemLabel = document.createElement("label");
-        itemLabel.style.cssText = "text-align: center;";
         itemLabel.innerHTML = `
                     ${item.nome} <br />
                     <input type="number" min="0" value="0" id="${itemKey}" />
                 `;
 
-        const materialNomes = {
-          cobalto: "Cobalto",
-          aco: "Aço",
-          aluminioNaval: "Alumínio Naval",
-          polietileno: "Polietileno",
-          borrachaFluorada: "Borracha Fluorada",
-          titanio: "Titânio",
-          vidroTemperado: "Vidro Temperado",
-          cripto: "Cripto",
-        };
-
         const informativo = document.createElement("p");
         informativo.className = "informativo";
-        informativo.style.cssText =
-          "text-align: center; font-size: 12px; margin-top: 8px;";
 
         const materiais = receitas[itemKey]
           ? Object.entries(receitas[itemKey])
-              .map(([mat, qtd]) => {
-                const nomeMaterial =
-                  materialNomes[mat] ||
-                  mat.charAt(0).toUpperCase() + mat.slice(1);
-                return `${qtd} ${nomeMaterial}`;
-              })
+              .map(([mat, qtd]) => `${mat}: ${qtd}`)
               .join(", ")
           : "Receita não encontrada";
 
@@ -599,19 +569,17 @@ function gerarTabelaMateriais(totalMateriais) {
 
 function gerarResumoRecicladoEValor(reciclado, valorTotal) {
   return `
-        <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; margin-top: 20px; gap: 20px;">
-            <div style="text-align: center; background-color: #111; padding: 12px 20px; border-radius: 10px; border: 2px solid #FFD700;">
-                <h4 style="margin-bottom: 8px; color: #FFD700;">⚙️ Materiais Recicláveis</h4>
-                <p style="font-size: 18px; font-weight: bold; color: #FFD700;">${Math.ceil(
-                  reciclado
-                ).toLocaleString("pt-BR")}</p>
+        <div class="flex-container">
+            <div class="flex-item gold">
+                <h4>⚙️ Materiais Recicláveis</h4>
+                <p>${Math.ceil(reciclado).toLocaleString("pt-BR")}</p>
             </div>
-            <div style="text-align: center; background-color: #111; padding: 12px 20px; border-radius: 10px; border: 2px solid #00ff99;">
-                <h4 style="margin-bottom: 8px; color: #00ff99;">💰 Valor Total</h4>
-                <p style="font-size: 18px; font-weight: bold; color: #00ff99;">$ ${valorTotal.toLocaleString(
-                  "pt-BR",
-                  { minimumFractionDigits: 2, maximumFractionDigits: 2 }
-                )}</p>
+            <div class="flex-item green">
+                <h4>💰 Valor Total</h4>
+                <p>$ ${valorTotal.toLocaleString("pt-BR", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}</p>
             </div>
         </div>
     `;

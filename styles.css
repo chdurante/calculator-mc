@@ -43,6 +43,16 @@ h1 {
   background: rgba(255, 0, 0, 0.4);
   border-radius: 6px;
   color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.categoria-ico {
+  width: 32px;
+  height: 32px;
 }
 
 .itens {
@@ -50,20 +60,31 @@ h1 {
   padding: 8px;
 }
 
-.item input {
-  width: 50px;
-  padding: 4px;
-  border: none;
-  border-radius: 4px;
+.item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+  margin: 10px;
+}
+
+.item-container img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 8px;
+}
+
+.item-container label {
   text-align: center;
-  background: #222;
-  color: #fff;
 }
 
 .informativo {
+  text-align: center;
   font-size: 12px;
+  margin-top: 8px;
   color: #ffcc00;
-  margin-bottom: 5px;
 }
 
 button {
@@ -190,4 +211,51 @@ button:hover {
 .cripto-toggle label {
   font-size: 16px;
   cursor: pointer;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.flex-item {
+  text-align: center;
+  background-color: #111;
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: 2px solid;
+}
+
+.flex-item.gold {
+  border-color: #ffd700;
+}
+
+.flex-item.gold h4 {
+  margin-bottom: 8px;
+  color: #ffd700;
+}
+
+.flex-item.gold p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffd700;
+}
+
+.flex-item.green {
+  border-color: #00ff99;
+}
+
+.flex-item.green h4 {
+  margin-bottom: 8px;
+  color: #00ff99;
+}
+
+.flex-item.green p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #00ff99;
 }
