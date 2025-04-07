@@ -1,0 +1,19 @@
+{
+  "beretta": 8000,
+  "ruger": 11000,
+  "revolver": 14000,
+  "pistola50": 18000,
+  "uzi": 33000,
+  "evo": 34000,
+  "akcompacta": 40000,
+  "krv": 44000,
+  "doze": 45000,
+  "ak47": 45000,
+  "scar": 48000,
+  "silenciador": 15000,
+  "silenciadorHeavy": 25000,
+  "penteEstendidoPistola": 4000,
+  "penteEstendidoSMG": 5000,
+  "lanternaTatica": 1000,
+  "molotov": 10000
+}

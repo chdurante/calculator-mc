@@ -1,0 +1,87 @@
+{
+    "beretta": {
+        "nome": "Beretta",
+        "categoria": "pistolas",
+        "ico": "images/beretta.png"
+    },
+    "ruger": {
+        "nome": "Ruger",
+        "categoria": "pistolas",
+        "ico": "images/ruger.png"
+    },
+    "revolver": {
+        "nome": "Revólver",
+        "categoria": "pistolas",
+        "ico": "images/revolver.png"
+    },
+    "pistola50": {
+        "nome": "Pistola .50",
+        "categoria": "pistolas",
+        "ico": "images/pistola50.png"
+    },
+    "uzi": {
+        "nome": "Uzi",
+        "categoria": "subs",
+        "ico": "images/uzi.png"
+    },
+    "evo": {
+        "nome": "EVO",
+        "categoria": "subs",
+        "ico": "images/evo.png"
+    },
+    "akcompacta": {
+        "nome": "AK Compacta",
+        "categoria": "subs",
+        "ico": "images/akcompacta.png"
+    },
+    "krv": {
+        "nome": "KRV",
+        "categoria": "subs",
+        "ico": "images/krv.png"
+    },
+    "doze": {
+        "nome": "Doze",
+        "categoria": "subs",
+        "ico": "images/doze.png"
+    },
+    "ak47": {
+        "nome": "AK-47",
+        "categoria": "fuzis",
+        "ico": "images/ak47.png"
+    },
+    "scar": {
+        "nome": "SCAR-H",
+        "categoria": "fuzis",
+        "ico": "images/scar.png"
+    },
+    "silenciador": {
+        "nome": "Silenciador",
+        "categoria": "attachments",
+        "ico": "images/silenciador.png"
+    },
+    "silenciadorHeavy": {
+        "nome": "Silenciador Heavy",
+        "categoria": "attachments",
+        "ico": "images/silenciadorHeavy.png"
+    },
+    "penteEstendidoPistola": {
+        "nome": "Pente Estendido Pistola",
+        "categoria": "attachments",
+        "ico": "images/penteEstendidoPistola.png"
+    },
+    "penteEstendidoSMG": {
+        "nome": "Pente Estendido SMG",
+        "categoria": "attachments",
+        "ico": "images/penteEstendidoSMG.png"
+    },
+    "lanternaTatica": {
+        "nome": "Lanterna Tática",
+        "categoria": "attachments",
+        "ico": "images/lanternaTatica.png"
+    },
+    "molotov": {
+        "nome": "Molotov",
+        "categoria": "outros",
+        "ico": "images/molotov.png"
+    }
+}

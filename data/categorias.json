@@ -1,0 +1,22 @@
+{
+  "pistolas": {
+    "nome": "Pistolas",
+    "ico": "images/pistolas.png"
+  },
+  "subs": {
+    "nome": "Submetralhadoras",
+    "ico": "images/subs.png"
+  },
+  "fuzis": {
+    "nome": "Fuzis",
+    "ico": "images/fuzis.png"
+  },
+  "attachments": {
+    "nome": "Attachments",
+    "ico": "images/attachments.png"
+  },
+  "outros": {
+    "nome": "Outros",
+    "ico": "images/outros.png"
+  }
+}

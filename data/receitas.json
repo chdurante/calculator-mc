@@ -1,0 +1,114 @@
+{
+    "beretta": {
+        "cobalto": 55,
+        "aco": 50,
+        "aluminioNaval": 45,
+        "polietileno": 55,
+        "cripto": 0
+    },
+    "ruger": {
+        "cobalto": 60,
+        "aco": 55,
+        "aluminioNaval": 45,
+        "polietileno": 55,
+        "cripto": 0
+    },
+    "revolver": {
+        "cobalto": 85,
+        "aco": 75,
+        "aluminioNaval": 65,
+        "polietileno": 80,
+        "cripto": 0
+    },
+    "pistola50": {
+        "cobalto": 110,
+        "aco": 90,
+        "aluminioNaval": 75,
+        "polietileno": 105,
+        "cripto": 0
+    },
+    "uzi": {
+        "cobalto": 140,
+        "aco": 120,
+        "aluminioNaval": 105,
+        "polietileno": 135,
+        "cripto": 0
+    },
+    "evo": {
+        "cobalto": 140,
+        "aco": 120,
+        "aluminioNaval": 105,
+        "polietileno": 135,
+        "cripto": 0
+    },
+    "krv": {
+        "cobalto": 140,
+        "aco": 120,
+        "aluminioNaval": 105,
+        "polietileno": 135,
+        "cripto": 0
+    },
+    "akcompacta": {
+        "cobalto": 140,
+        "aco": 120,
+        "aluminioNaval": 105,
+        "polietileno": 135,
+        "cripto": 0
+    },
+    "doze": {
+        "cobalto": 300,
+        "aco": 260,
+        "aluminioNaval": 260,
+        "polietileno": 280,
+        "cripto": 0
+    },
+    "ak47": {
+        "cobalto": 180,
+        "aco": 170,
+        "aluminioNaval": 150,
+        "polietileno": 180,
+        "cripto": 0
+    },
+    "scar": {
+        "cobalto": 180,
+        "aco": 170,
+        "aluminioNaval": 150,
+        "polietileno": 180,
+        "cripto": 0
+    },
+    "silenciador": {
+        "polietileno": 100,
+        "borrachaFluorada": 100,
+        "cobalto": 100,
+        "aluminioNaval": 100
+    },
+    "silenciadorHeavy": {
+        "polietileno": 200,
+        "borrachaFluorada": 200,
+        "cobalto": 200,
+        "aluminioNaval": 200
+    },
+    "penteEstendidoPistola": {
+        "borrachaFluorada": 20,
+        "titanio": 20,
+        "cobalto": 20
+    },
+    "penteEstendidoSMG": {
+        "borrachaFluorada": 40,
+        "titanio": 40,
+        "cobalto": 40
+    },
+    "lanternaTatica": {
+        "polietileno": 5,
+        "borrachaFluorada": 5,
+        "cobalto": 5,
+        "vidroTemperado": 5,
+        "titanio": 5
+    },
+    "molotov": {
+        "aco": 40,
+        "cobalto": 40,
+        "aluminioNaval": 80,
+        "polietileno": 40
+    }
+}
