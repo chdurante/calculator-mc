@@ -1,29 +1,29 @@
 function resetar() {
-  // Limpa os valores dos inputs dinamicamente
-  document
-    .querySelectorAll("input[type='number']")
-    .forEach((input) => (input.value = 0));
+  // Reset all input fields to 0
+  document.querySelectorAll("input[type='number']").forEach(input => input.value = 0);
 
-  // Esconde o resultado
+  // Hide and clear the result div
   const resultDiv = document.getElementById("result");
-  resultDiv.style.display = "none";
-  resultDiv.innerHTML = "";
+  if (resultDiv) {
+    Object.assign(resultDiv.style, { display: "none" });
+    resultDiv.innerHTML = "";
+  }
 
-  // Fecha todas as categorias
-  document
-    .querySelectorAll(".itens")
-    .forEach((div) => (div.style.display = "none"));
+  // Close all item containers
+  document.querySelectorAll(".itens").forEach(div => div.style.display = "none");
 }
 
 function toggleCategoria(element) {
   const itens = element.querySelector(".itens");
   const isOpen = itens.style.display === "block";
-  document
-    .querySelectorAll(".itens")
-    .forEach((div) => (div.style.display = "none"));
-  if (!isOpen) {
-    itens.style.display = "block";
-  }
+
+  // Fecha todas as categorias
+  document.querySelectorAll(".itens").forEach((div) => {
+    div.style.display = "none";
+  });
+
+  // Abre a categoria clicada, se não estiver aberta
+  itens.style.display = isOpen ? "none" : "block";
 }
 
 const receitas = {
@@ -462,25 +462,42 @@ function gerarHTMLCategorias() {
   }
 }
 
-// Call the function to generate the HTML on page load
-document.addEventListener("DOMContentLoaded", gerarHTMLCategorias);
+// Initialize the page by generating the HTML for categories
+document.addEventListener("DOMContentLoaded", () => {
+  gerarHTMLCategorias();
+});
 
 function calcular() {
   const usarCripto = document.getElementById("usar-cripto").checked;
-  const receitasUsadas = usarCripto ? receitasComCripto : receitas; // Usa a receita correta
+  const receitasUsadas = usarCripto ? receitasComCripto : receitas;
 
-  document
-    .querySelectorAll(".itens")
-    .forEach((div) => (div.style.display = "none"));
+  esconderCategorias();
+  const { totalItens, totalMateriais, reciclado, itensEscolhidos } =
+    calcularMateriaisEItens(receitasUsadas);
 
+  if (totalItens === 0) {
+    exibirMensagemNenhumItem();
+    return;
+  }
+
+  const valorTotal = calcularValorTotal(itensEscolhidos);
+  exibirResultado(totalItens, itensEscolhidos, totalMateriais, reciclado, valorTotal);
+}
+
+function esconderCategorias() {
+  document.querySelectorAll(".itens").forEach((div) => (div.style.display = "none"));
+}
+
+function calcularMateriaisEItens(receitasUsadas) {
   let totalItens = 0;
-  let total = {};
+  let totalMateriais = {};
   let reciclado = 0;
   let itensEscolhidos = [];
 
   for (const [itemKey, item] of Object.entries(itens)) {
     const inputElement = document.getElementById(itemKey);
     const quantidade = inputElement ? parseInt(inputElement.value) || 0 : 0;
+
     if (quantidade > 0) {
       itensEscolhidos.push(`${quantidade}x ${item.nome}`);
       totalItens += quantidade;
@@ -488,64 +505,65 @@ function calcular() {
       if (receitasUsadas[itemKey]) {
         for (const [mat, qtd] of Object.entries(receitasUsadas[itemKey])) {
           const totalMat = qtd * quantidade;
-          total[mat] = (total[mat] || 0) + totalMat;
+          totalMateriais[mat] = (totalMateriais[mat] || 0) + totalMat;
           reciclado += totalMat * reciclaveis[mat];
         }
       }
     }
   }
 
-  if (totalItens === 0) {
-    const resultDiv = document.getElementById("result");
-    resultDiv.style.display = "block";
-    resultDiv.innerHTML = `
-            <div class="alerta">
-                <strong>Nenhum item selecionado</strong>
-                <p>Informe ao menos 1 item para calcular os materiais necessários.</p>
-            </div>
-        `;
-    return;
-  }
+  return { totalItens, totalMateriais, reciclado, itensEscolhidos };
+}
 
-  const valorTotal = itensEscolhidos.reduce((acc, item) => {
+function exibirMensagemNenhumItem() {
+  const resultDiv = document.getElementById("result");
+  resultDiv.style.display = "block";
+  resultDiv.innerHTML = `
+        <div class="alerta">
+            <strong>Nenhum item selecionado</strong>
+            <p>Informe ao menos 1 item para calcular os materiais necessários.</p>
+        </div>
+    `;
+}
+
+function calcularValorTotal(itensEscolhidos) {
+  return itensEscolhidos.reduce((acc, item) => {
     const [quantidade, nome] = item.split("x").map((str) => str.trim());
     const itemKey = Object.keys(itens).find((key) => itens[key].nome === nome);
     return acc + parseInt(quantidade) * (precos[itemKey] || 0);
   }, 0);
+}
 
+function exibirResultado(totalItens, itensEscolhidos, totalMateriais, reciclado, valorTotal) {
   const resultDiv = document.getElementById("result");
   resultDiv.style.display = "block";
   resultDiv.innerHTML = `
         <h3>Relatório de Produção</h3>
         <p><strong>🛠️ Itens Produzidos:</strong></p>
         <ul>
-         ${itensEscolhidos
-           .map((item) => {
-             const [quantidade, nome] = item
-               .split("x")
-               .map((str) => str.trim());
-             const itemKey = Object.keys(itens).find(
-               (key) => itens[key].nome === nome
-             );
-             const valorItem = parseInt(quantidade) * (precos[itemKey] || 0);
-             return `<li>${item} - $ ${valorItem.toLocaleString("pt-BR", {
-               minimumFractionDigits: 2,
-               maximumFractionDigits: 2,
-             })}</li>`;
-           })
-           .join("")} 
-          </ul>
+         ${gerarListaItens(itensEscolhidos)} 
+        </ul>
         <p><strong>📦 Total Geral:</strong> ${totalItens} itens</p>
+        ${gerarTabelaMateriais(totalMateriais)}
+        ${gerarResumoRecicladoEValor(reciclado, valorTotal)}
     `;
+}
 
-  let tableHTML = `
-        <table class="result-table">
-            <tr>
-                <th>Material</th>
-                <th>Quantidade</th>
-            </tr>
-    `;
+function gerarListaItens(itensEscolhidos) {
+  return itensEscolhidos
+    .map((item) => {
+      const [quantidade, nome] = item.split("x").map((str) => str.trim());
+      const itemKey = Object.keys(itens).find((key) => itens[key].nome === nome);
+      const valorItem = parseInt(quantidade) * (precos[itemKey] || 0);
+      return `<li>${item} - $ ${valorItem.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })}</li>`;
+    })
+    .join("");
+}
 
+function gerarTabelaMateriais(totalMateriais) {
   const materialNomes = {
     cobalto: "Cobalto",
     aco: "Aço",
@@ -557,20 +575,30 @@ function calcular() {
     cripto: "Cripto",
   };
 
-  for (let mat in total) {
+  let tableHTML = `
+        <table class="result-table">
+            <tr>
+                <th>Material</th>
+                <th>Quantidade</th>
+            </tr>
+    `;
+
+  for (let mat in totalMateriais) {
     const nomeMaterial = materialNomes[mat] || mat;
     tableHTML += `
             <tr>
                 <td>${nomeMaterial}</td>
-                <td>${total[mat]}</td>
+                <td>${totalMateriais[mat]}</td>
             </tr>
         `;
   }
 
   tableHTML += `</table>`;
-  resultDiv.innerHTML += tableHTML;
+  return tableHTML;
+}
 
-  resultDiv.innerHTML += `
+function gerarResumoRecicladoEValor(reciclado, valorTotal) {
+  return `
         <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; margin-top: 20px; gap: 20px;">
             <div style="text-align: center; background-color: #111; padding: 12px 20px; border-radius: 10px; border: 2px solid #FFD700;">
                 <h4 style="margin-bottom: 8px; color: #FFD700;">⚙️ Materiais Recicláveis</h4>
