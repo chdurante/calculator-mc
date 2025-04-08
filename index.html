@@ -16,22 +16,41 @@
       <div class="logo">
         <img src="images/logo.png" alt="Red Roses - MC" />
       </div>
-
-      <h1>Calculadora de Materiais</h1>
-
-      <div class="cripto-toggle">
-        <input type="checkbox" id="usar-cripto" />
-        <label for="usar-cripto">Usar Cripto</label>
+      <!-- ABAS -->
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="producao">Produção</button>
+        <button class="tab-btn" data-tab="compra">Materiais</button>
       </div>
 
-      <div id="categorias-container"></div>
+      <div class="tab-content active" id="tab-producao">
+        <h1>Calculadora de Produção</h1>
+        <div class="cripto-toggle">
+          <input type="checkbox" id="usar-cripto" />
+          <label for="usar-cripto">Usar Cripto</label>
+        </div>
 
-      <div class="buttons">
-        <button id="btn-calcular">Calcular</button>
-        <button id="btn-resetar">Resetar</button>
+        <div id="categorias-container"></div>
+
+        <div class="buttons">
+          <button id="btn-calcular">Calcular</button>
+          <button id="btn-resetar">Resetar</button>
+        </div>
+
+        <div id="result"></div>
       </div>
 
-      <div id="result"></div>
+      <div class="tab-content" id="tab-compra">
+        <h1>Calculadora de Troca/Venda de Materiais</h1>
+
+        <div id="compra-container"></div>
+
+        <div class="buttons">
+          <button id="btn-calcular-compra">Calcular</button>
+          <button id="btn-resetar-compra">Resetar</button>
+        </div>
+
+        <div id="compra-resultado"></div>
+      </div>
     </div>
 
     <script type="module" src="src/main.js"></script>

@@ -17,7 +17,7 @@ export function gerarListaItens(itensEscolhidos) {
     const itemKey = Object.keys(DataStore.itens).find(key => DataStore.itens[key].nome === nome);
     const valorItem = parseInt(quantidade) * (DataStore.precos[itemKey] || 0);
 
-    return `<li>${item} - $ ${valorItem.toLocaleString("pt-BR", {
+    return `<li>🔹${item} - $ ${valorItem.toLocaleString("pt-BR", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     })}</li>`;
