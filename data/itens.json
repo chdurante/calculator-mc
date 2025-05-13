@@ -29,11 +29,6 @@
         "categoria": "subs",
         "ico": "images/evo.png"
     },
-    "akcompacta": {
-        "nome": "AK Compacta",
-        "categoria": "subs",
-        "ico": "images/akcompacta.png"
-    },
     "krv": {
         "nome": "KRV",
         "categoria": "subs",
@@ -43,6 +38,11 @@
         "nome": "Doze",
         "categoria": "subs",
         "ico": "images/doze.png"
+    },
+    "akcompacta": {
+        "nome": "AK Compacta",
+        "categoria": "fuzis",
+        "ico": "images/akcompacta.png"
     },
     "ak47": {
         "nome": "AK-47",
