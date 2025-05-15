@@ -77,38 +77,39 @@
         "cripto": 0
     },
     "silenciador": {
-        "polietileno": 100,
-        "borrachaFluorada": 100,
-        "cobalto": 100,
-        "aluminioNaval": 100
+        "polietileno": 10,
+        "borrachaFluorada": 10,
+        "cobalto": 10,
+        "aluminioNaval": 10
     },
     "silenciadorHeavy": {
-        "polietileno": 200,
-        "borrachaFluorada": 200,
-        "cobalto": 200,
-        "aluminioNaval": 200
+        "polietileno": 15,
+        "borrachaFluorada": 15,
+        "cobalto": 15,
+        "aluminioNaval": 15
     },
     "penteEstendidoPistola": {
-        "borrachaFluorada": 20,
-        "titanio": 20,
-        "cobalto": 20
+        "borrachaFluorada": 5,
+        "titanio": 5,
+        "cobalto": 5
     },
     "penteEstendidoSMG": {
-        "borrachaFluorada": 40,
-        "titanio": 40,
-        "cobalto": 40
+        "borrachaFluorada": 10,
+        "titanio": 10,
+        "cobalto": 10
     },
     "lanternaTatica": {
-        "polietileno": 5,
-        "borrachaFluorada": 5,
-        "cobalto": 5,
-        "vidroTemperado": 5,
-        "titanio": 5
+        "polietileno": 2,
+        "borrachaFluorada": 2,
+        "cobalto": 2,
+        "vidroTemperado": 2,
+        "titanio": 2
     },
     "molotov": {
-        "aco": 40,
-        "cobalto": 40,
-        "aluminioNaval": 80,
-        "polietileno": 40
+        "aco": 5,
+        "cobalto": 5,
+        "aluminioNaval": 5,
+        "polietileno": 5,
+        "cripto": 1
     }
 }
