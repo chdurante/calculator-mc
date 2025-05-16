@@ -10,10 +10,10 @@
   "doze": 45000,
   "ak47": 45000,
   "scar": 48000,
-  "silenciador": 15000,
-  "silenciadorHeavy": 25000,
-  "penteEstendidoPistola": 4000,
-  "penteEstendidoSMG": 5000,
-  "lanternaTatica": 1000,
-  "molotov": 10000
+  "silenciador": 1500,
+  "silenciadorHeavy": 2500,
+  "penteEstendidoPistola": 1500,
+  "penteEstendidoSMG": 2500,
+  "lanternaTatica": 700,
+  "molotov": 2000
 }
