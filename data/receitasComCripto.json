@@ -111,5 +111,19 @@
         "aluminioNaval": 5,
         "polietileno": 5,
         "cripto": 1
+    },
+    "tec9": {
+        "cobalto": 100,
+        "aco": 80,
+        "aluminioNaval": 65,
+        "polietileno": 95,
+        "cripto": 4
+    },
+    "thompson": {
+        "cobalto": 110,
+        "aco": 90,
+        "aluminioNaval": 75,
+        "polietileno": 105,
+        "cripto": 8
     }
 }

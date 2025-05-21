@@ -83,5 +83,15 @@
         "nome": "Molotov",
         "categoria": "outros",
         "ico": "images/molotov.png"
-    }
+    },
+    "tec9": {
+        "nome": "TEC-9",
+        "categoria": "subs",
+        "ico": "images/tec9.png"
+    },
+    "thompson": {
+        "nome": "Thompson",
+        "categoria": "subs",
+        "ico": "images/thompson.png"
+    }   
 }

@@ -15,5 +15,7 @@
   "penteEstendidoPistola": 1500,
   "penteEstendidoSMG": 2500,
   "lanternaTatica": 700,
-  "molotov": 2000
+  "molotov": 2000,
+  "tec9": 35000,
+  "thompson": 30000
 }
