@@ -125,5 +125,10 @@
         "aluminioNaval": 75,
         "polietileno": 105,
         "cripto": 8
+    },
+    "penteEstendidoTec9": {
+        "borrachaFluorada": 10,
+        "titanio": 10,
+        "cobalto": 10
     }
 }

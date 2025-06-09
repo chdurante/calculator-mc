@@ -93,5 +93,10 @@
         "nome": "Thompson",
         "categoria": "subs",
         "ico": "images/thompson.png"
-    }   
+    },
+    "penteEstendidoTec9": {
+        "nome": "Pente Estendido TEC-9",
+        "categoria": "attachments",
+        "ico": "images/penteEstendidoTec9.png"
+    }
 }
