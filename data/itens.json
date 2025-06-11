@@ -49,10 +49,10 @@
         "categoria": "fuzis",
         "ico": "images/ak47.png"
     },
-    "scar": {
-        "nome": "SCAR-H",
+    "r9": {
+        "nome": "R9",
         "categoria": "fuzis",
-        "ico": "images/scar.png"
+        "ico": "images/r9.png"
     },
     "silenciador": {
         "nome": "Silenciador",
