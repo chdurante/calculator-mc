@@ -1,134 +1,101 @@
 {
     "beretta": {
-        "cobalto": 25,
-        "aco": 20,
-        "aluminioNaval": 15,
-        "polietileno": 25,
-        "cripto": 4
+        "lingoteAco": 4,
+        "blocoPolimero": 2,
+        "tirasCouro": 2,
+        "adesivoIndustrial": 2,
+        "conjuntoMolas": 4,
+        "carretelCobre": 4,
+        "oleoSolvente": 4,
+        "poVidro": 2,
+        "cripto": 100
     },
-    "ruger": {
-        "cobalto": 40,
-        "aco": 35,
-        "aluminioNaval": 25,
-        "polietileno": 35,
-        "cripto": 4
+    "lingoteAco": {
+        "metal": 10,
+        "sucata": 10,
+        "cripto": 0
     },
-    "revolver": {
-        "cobalto": 55,
-        "aco": 45,
-        "aluminioNaval": 35,
-        "polietileno": 50,
-        "cripto": 4
+    "blocoPolimero": {
+        "plastico": 10,
+        "borracha": 5,
+        "cripto": 0
     },
-    "pistola50": {
-        "cobalto": 80,
-        "aco": 60,
-        "aluminioNaval": 45,
-        "polietileno": 75,
-        "cripto": 4
+    "conjuntoMolas": {
+        "molas": 10,
+        "pregos": 5,
+        "cripto": 0
     },
-    "uzi": {
-        "cobalto": 110,
-        "aco": 90,
-        "aluminioNaval": 75,
-        "polietileno": 105,
-        "cripto": 8
+    "carretelCobre": {
+        "fiosCobre": 5,
+        "pecasEletronicas": 5,
+        "cripto": 0
     },
-    "evo": {
-        "cobalto": 110,
-        "aco": 90,
-        "aluminioNaval": 75,
-        "polietileno": 105,
-        "cripto": 8
+    "poVidro": {
+        "vidros": 10,
+        "garrafasVazias": 5,
+        "cripto": 0
     },
-    "krv": {
-        "cobalto": 110,
-        "aco": 90,
-        "aluminioNaval": 75,
-        "polietileno": 105,
-        "cripto": 8
+    "adesivoIndustrial": {
+        "colas": 10,
+        "superColas": 5,
+        "cripto": 0
     },
-    "akcompacta": {
-        "cobalto": 150,
-        "aco": 140,
-        "aluminioNaval": 120,
-        "polietileno": 150,
-        "cripto": 8
+    "oleoSolvente": {
+        "baterias": 5,
+        "latinhasVazias": 10,
+        "cripto": 0
     },
-    "doze": {
-        "cobalto": 270,
-        "aco": 230,
-        "aluminioNaval": 230,
-        "polietileno": 250,
-        "cripto": 8
+    "tirasCouro": {
+        "couros": 5,
+        "roupasSujas": 5,
+        "cripto": 0
     },
-    "ak47": {
-        "cobalto": 150,
-        "aco": 140,
-        "aluminioNaval": 120,
-        "polietileno": 150,
-        "cripto": 8
+    "algema": {
+        "metal": 5,
+        "molas": 5,
+        "superColas": 5,
+        "pregos": 10,
+        "cripto": 25
     },
-    "r9": {
-        "cobalto": 150,
-        "aco": 140,
-        "aluminioNaval": 120,
-        "polietileno": 150,
-        "cripto": 8
+    "c4": {
+        "carcacaCarga": 1,
+        "compostoInerte": 1,
+        "timerSimples": 1,
+        "fiosCobre": 1,
+        "cripto": 200
     },
-    "silenciador": {
-        "polietileno": 10,
-        "borrachaFluorada": 10,
-        "cobalto": 10,
-        "aluminioNaval": 10
+    "carcacaCarga": {
+        "placaPlastico": 1,
+        "matrizCarcaca": 1,
+        "cripto": 0
     },
-    "silenciadorHeavy": {
-        "polietileno": 15,
-        "borrachaFluorada": 15,
-        "cobalto": 15,
-        "aluminioNaval": 15
+    "compostoInerte": {
+        "roupasSujas": 1,
+        "colas": 1,
+        "caixaMedicaPequena": 1,
+        "cripto": 0
     },
-    "penteEstendidoPistola": {
-        "borrachaFluorada": 5,
-        "titanio": 5,
-        "cobalto": 5
+    "timerSimples": {
+        "circuitoSimples": 1,
+        "baterias": 1,
+        "fiosCobre": 1,
+        "cripto": 0
     },
-    "penteEstendidoSMG": {
-        "borrachaFluorada": 10,
-        "titanio": 10,
-        "cobalto": 10
+    "placaPlastico": {
+        "plastico": 2,
+        "colas": 1,
+        "cripto": 0
     },
-    "lanternaTatica": {
-        "polietileno": 2,
-        "borrachaFluorada": 2,
-        "cobalto": 2,
-        "vidroTemperado": 2,
-        "titanio": 2
+    "matrizCarcaca": {
+        "garrafasVazias": 1,
+        "argila": 1,
+        "cripto": 0
     },
-    "molotov": {
-        "aco": 5,
-        "cobalto": 5,
-        "aluminioNaval": 5,
-        "polietileno": 5,
-        "cripto": 1
-    },
-    "tec9": {
-        "cobalto": 100,
-        "aco": 80,
-        "aluminioNaval": 65,
-        "polietileno": 95,
-        "cripto": 4
-    },
-    "thompson": {
-        "cobalto": 110,
-        "aco": 90,
-        "aluminioNaval": 75,
-        "polietileno": 105,
-        "cripto": 8
-    },
-    "penteEstendidoTec9": {
-        "borrachaFluorada": 10,
-        "titanio": 10,
-        "cobalto": 10
+    "circuitoSimples": {
+        "pecasEletronicas": 1,
+        "fiosCobre": 1,
+        "molas": 1,
+        "pedacoKevlar": 1,
+        "cripto": 0
     }
 }

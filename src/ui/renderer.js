@@ -42,22 +42,7 @@ export function gerarHTMLCategorias() {
         onerror: () => (itemImage.style.display = "none")
       });
 
-      const materiais = DataStore.receitas[itemKey]
-  ? Object.entries(DataStore.receitas[itemKey])
-      .map(([mat, qtd]) => `${traduzirMaterial(mat)}: ${qtd}`)
-      .join(", ")
-  : "Receita não encontrada";
-
-
-      const valorUnitario = DataStore.precos[itemKey]
-        ? ` (Valor Unitário: R$ ${DataStore.precos[itemKey].toFixed(2)})`
-        : "";
-
-      const informativo = document.createElement("p");
-      informativo.className = "informativo";
-      informativo.textContent = `Cada ${item.nome} requer: ${materiais}${valorUnitario}`;
-
-      itemContainer.append(itemImage, itemLabel, informativo);
+      itemContainer.append(itemImage, itemLabel);
       itensDiv.appendChild(itemContainer);
     });
 

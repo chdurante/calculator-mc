@@ -1,22 +1,5 @@
 {
-  "beretta": 8000,
-  "ruger": 11000,
-  "revolver": 14000,
-  "pistola50": 18000,
-  "uzi": 33000,
-  "evo": 34000,
-  "akcompacta": 40000,
-  "krv": 44000,
-  "doze": 45000,
-  "ak47": 45000,
-  "r9": 48000,
-  "silenciador": 1500,
-  "silenciadorHeavy": 2500,
-  "penteEstendidoPistola": 1500,
-  "penteEstendidoSMG": 2500,
-  "lanternaTatica": 700,
-  "molotov": 2000,
-  "tec9": 35000,
-  "thompson": 30000,
-  "penteEstendidoTec9": 3500
+  "beretta": 0,
+  "algema": 0,
+  "c4": 0
 }

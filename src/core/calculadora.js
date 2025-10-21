@@ -1,12 +1,12 @@
 import { DataStore } from "../domain/materiaisService.js";
-import { gerarListaItens, gerarTabelaMateriais, gerarResumoRecicladoEValor } from "./formatador.js";
+import { gerarListaItens, gerarTabelaMateriais, gerarTabelaHierarquica, gerarResumoValor } from "./formatador.js";
 
 export function calcular() {
   const usarCripto = document.getElementById("usar-cripto").checked;
   const receitasUsadas = usarCripto ? DataStore.receitasComCripto : DataStore.receitas;
 
   esconderCategorias();
-  const { totalItens, totalMateriais, reciclado, itensEscolhidos } = calcularMateriaisEItens(receitasUsadas);
+  const { totalItens, totalMateriais, itensEscolhidos } = calcularMateriaisEItens(receitasUsadas);
 
   const resultDiv = document.getElementById("result");
 
@@ -27,8 +27,10 @@ export function calcular() {
     <p><strong>🛠️ Itens Produzidos:</strong></p>
     <ul>${gerarListaItens(itensEscolhidos)}</ul>
     <p><strong>📦 Total Geral:</strong> ${totalItens} itens</p>
+    ${gerarTabelaHierarquica(itensEscolhidos, receitasUsadas)}
+    <h3>📊 Total de Materiais Básicos</h3>
     ${gerarTabelaMateriais(totalMateriais)}
-    ${gerarResumoRecicladoEValor(reciclado, valorTotal)}
+    ${gerarResumoValor(valorTotal)}
   `;
 }
 
@@ -47,7 +49,6 @@ function esconderCategorias() {
 function calcularMateriaisEItens(receitasUsadas) {
   let totalItens = 0;
   const totalMateriais = {};
-  let reciclado = 0;
   const itensEscolhidos = [];
 
   for (const [itemKey, item] of Object.entries(DataStore.itens)) {
@@ -58,17 +59,43 @@ function calcularMateriaisEItens(receitasUsadas) {
       itensEscolhidos.push(`${quantidade}x ${item.nome}`);
       totalItens += quantidade;
 
-      if (receitasUsadas[itemKey]) {
-        for (const [mat, qtd] of Object.entries(receitasUsadas[itemKey])) {
-          const total = qtd * quantidade;
-          totalMateriais[mat] = (totalMateriais[mat] || 0) + total;
-          reciclado += total * (DataStore.reciclaveis[mat] || 0);
-        }
+      // Calcular materiais recursivamente
+      const materiaisCalculados = calcularMateriaisRecursivo(itemKey, quantidade, receitasUsadas);
+      
+      for (const [mat, qtd] of Object.entries(materiaisCalculados)) {
+        totalMateriais[mat] = (totalMateriais[mat] || 0) + qtd;
       }
     }
   }
 
-  return { totalItens, totalMateriais, reciclado, itensEscolhidos };
+  return { totalItens, totalMateriais, itensEscolhidos };
+}
+
+function calcularMateriaisRecursivo(itemKey, quantidade, receitasUsadas) {
+  const materiais = {};
+  
+  if (!receitasUsadas[itemKey]) {
+    return materiais;
+  }
+
+  for (const [mat, qtd] of Object.entries(receitasUsadas[itemKey])) {
+    if (mat === 'cripto') continue;
+    
+    const total = qtd * quantidade;
+    
+    // Se o material tem receita (é uma submatéria), calcular recursivamente
+    if (receitasUsadas[mat]) {
+      const subMateriais = calcularMateriaisRecursivo(mat, total, receitasUsadas);
+      for (const [subMat, subQtd] of Object.entries(subMateriais)) {
+        materiais[subMat] = (materiais[subMat] || 0) + subQtd;
+      }
+    } else {
+      // É um material básico final
+      materiais[mat] = (materiais[mat] || 0) + total;
+    }
+  }
+  
+  return materiais;
 }
 
 function calcularValorTotal(itensEscolhidos) {
