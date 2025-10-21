@@ -1,37 +1,48 @@
 import { DataStore } from "../domain/materiaisService.js";
 import { gerarListaItens, gerarTabelaMateriais, gerarTabelaHierarquica, gerarResumoValor } from "./formatador.js";
+import { getItemKeyByNome, parseItemString } from "./utils.js";
 
 export function calcular() {
   const usarCripto = document.getElementById("usar-cripto").checked;
   const receitasUsadas = usarCripto ? DataStore.receitasComCripto : DataStore.receitas;
 
   esconderCategorias();
-  const { totalItens, totalMateriais, itensEscolhidos } = calcularMateriaisEItens(receitasUsadas);
-
+  
+  // Mostrar loading
   const resultDiv = document.getElementById("result");
-
-  if (totalItens === 0) {
-    resultDiv.style.display = "block";
-    resultDiv.innerHTML = `
-      <div class="alerta">
-        <strong>Nenhum item selecionado</strong>
-        <p>Informe ao menos 1 item para calcular os materiais necessários.</p>
-      </div>`;
-    return;
-  }
-
-  const valorTotal = calcularValorTotal(itensEscolhidos);
   resultDiv.style.display = "block";
   resultDiv.innerHTML = `
-    <h3>Relatório de Produção</h3>
-    <p><strong>🛠️ Itens Produzidos:</strong></p>
-    <ul>${gerarListaItens(itensEscolhidos)}</ul>
-    <p><strong>📦 Total Geral:</strong> ${totalItens} itens</p>
-    ${gerarTabelaHierarquica(itensEscolhidos, receitasUsadas)}
-    <h3>📊 Total de Materiais Básicos</h3>
-    ${gerarTabelaMateriais(totalMateriais)}
-    ${gerarResumoValor(valorTotal)}
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Calculando materiais...</p>
+    </div>
   `;
+
+  // Simular delay para melhor UX (opcional)
+  setTimeout(() => {
+    const { totalItens, totalMateriais, itensEscolhidos } = calcularMateriaisEItens(receitasUsadas);
+
+    if (totalItens === 0) {
+      resultDiv.innerHTML = `
+        <div class="alerta">
+          <strong>Nenhum item selecionado</strong>
+          <p>Informe ao menos 1 item para calcular os materiais necessários.</p>
+        </div>`;
+      return;
+    }
+
+    const valorTotal = calcularValorTotal(itensEscolhidos);
+    resultDiv.innerHTML = `
+      <h3>Relatório de Produção</h3>
+      <p><strong>🛠️ Itens Produzidos:</strong></p>
+      <ul>${gerarListaItens(itensEscolhidos)}</ul>
+      <p><strong>📦 Total Geral:</strong> ${totalItens} itens</p>
+      ${gerarTabelaHierarquica(itensEscolhidos, receitasUsadas)}
+      <h3>📊 Total de Materiais Básicos</h3>
+      ${gerarTabelaMateriais(totalMateriais)}
+      ${gerarResumoValor(valorTotal)}
+    `;
+  }, 100);
 }
 
 export function resetar() {
@@ -100,8 +111,8 @@ function calcularMateriaisRecursivo(itemKey, quantidade, receitasUsadas) {
 
 function calcularValorTotal(itensEscolhidos) {
   return itensEscolhidos.reduce((acc, item) => {
-    const [quantidade, nome] = item.split("x").map(str => str.trim());
-    const itemKey = Object.keys(DataStore.itens).find(key => DataStore.itens[key].nome === nome);
-    return acc + parseInt(quantidade) * (DataStore.precos[itemKey] || 0);
+    const { quantidade, nome } = parseItemString(item);
+    const itemKey = getItemKeyByNome(nome);
+    return acc + quantidade * (DataStore.precos[itemKey] || 0);
   }, 0);
 }

@@ -1,4 +1,5 @@
 import { DataStore } from "../domain/materiaisService.js";
+import { getItemKeyByNome, parseItemString, formatCurrency } from "./utils.js";
 
 const materialNomes = {
   // Materiais básicos
@@ -43,16 +44,13 @@ const materialNomes = {
 
 export function gerarListaItens(itensEscolhidos) {
   return itensEscolhidos.map(item => {
-    const [quantidade, nome] = item.split("x").map(str => str.trim());
-    const itemKey = Object.keys(DataStore.itens).find(key => DataStore.itens[key].nome === nome);
-    const valorItem = parseInt(quantidade) * (DataStore.precos[itemKey] || 0);
+    const { quantidade, nome } = parseItemString(item);
+    const itemKey = getItemKeyByNome(nome);
+    const valorItem = quantidade * (DataStore.precos[itemKey] || 0);
 
     // Só exibir valor se for maior que zero
     if (valorItem > 0) {
-      return `<li>🔹${item} - $ ${valorItem.toLocaleString("pt-BR", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      })}</li>`;
+      return `<li>🔹${item} - $ ${formatCurrency(valorItem)}</li>`;
     } else {
       return `<li>🔹${item}</li>`;
     }
@@ -82,8 +80,8 @@ export function gerarTabelaHierarquica(itensEscolhidos, receitasUsadas) {
 
   // Para cada item escolhido, mostrar sua hierarquia
   itensEscolhidos.forEach(item => {
-    const [quantidade, nome] = item.split("x").map(str => str.trim());
-    const itemKey = Object.keys(DataStore.itens).find(key => DataStore.itens[key].nome === nome);
+    const { quantidade, nome } = parseItemString(item);
+    const itemKey = getItemKeyByNome(nome);
     
     if (!itemKey || !receitasUsadas[itemKey]) return;
 
@@ -98,7 +96,7 @@ export function gerarTabelaHierarquica(itensEscolhidos, receitasUsadas) {
     // Mostrar submatérias diretas
     Object.entries(receitasUsadas[itemKey]).forEach(([mat, qtd]) => {
       if (mat === 'cripto') return;
-      const totalQtd = qtd * parseInt(quantidade);
+      const totalQtd = qtd * quantidade;
       const nomeMat = materialNomes[mat] || DataStore.itens[mat]?.nome || mat;
       html += `<li>${nomeMat}: ${totalQtd}</li>`;
     });
@@ -117,7 +115,7 @@ export function gerarTabelaHierarquica(itensEscolhidos, receitasUsadas) {
       Object.entries(receitasUsadas[itemKey]).forEach(([mat, qtd]) => {
         if (mat === 'cripto' || !receitasUsadas[mat]) return;
         
-        const totalQtd = qtd * parseInt(quantidade);
+        const totalQtd = qtd * quantidade;
         const nomeMat = materialNomes[mat] || DataStore.itens[mat]?.nome || mat;
         
         html += `
@@ -153,10 +151,7 @@ export function gerarResumoValor(valorTotal) {
       <div class="flex-container">
         <div class="flex-item green">
           <h4>💰 Valor Total</h4>
-          <p>$ ${valorTotal.toLocaleString("pt-BR", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          })}</p>
+          <p>$ ${formatCurrency(valorTotal)}</p>
         </div>
       </div>
     `;
