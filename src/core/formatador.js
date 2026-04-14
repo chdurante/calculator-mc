@@ -2,44 +2,23 @@ import { DataStore } from "../domain/materiaisService.js";
 import { getItemKeyByNome, parseItemString, formatCurrency } from "./utils.js";
 
 const materialNomes = {
-  // Materiais básicos
-  metal: "Metal",
-  sucata: "Sucata",
+  // Materiais base
+  ferro: "Ferro",
+  cobre: "Cobre",
+  aluminio: "Alumínio",
   plastico: "Plástico",
   borracha: "Borracha",
-  molas: "Molas",
-  pregos: "Pregos",
-  fiosCobre: "Fios de Cobre",
-  pecasEletronicas: "Peças Eletrônicas",
-  vidros: "Vidros",
-  garrafasVazias: "Garrafas Vazias",
-  colas: "Colas",
-  superColas: "Super Colas",
-  baterias: "Baterias",
-  latinhasVazias: "Latinhas Vazias",
-  couros: "Couros",
-  roupasSujas: "Roupas Sujas",
-  cripto: "Cripto",
-  // Submatérias
-  lingoteAco: "Lingote de Aço",
-  blocoPolimero: "Bloco de Polímero",
-  tirasCouro: "Tiras de Couro",
-  adesivoIndustrial: "Adesivo Industrial",
-  conjuntoMolas: "Conjunto de Molas",
-  carretelCobre: "Carretel de Cobre",
-  oleoSolvente: "Óleo de Solvente",
-  poVidro: "Pó de Vidro",
-  // C4 e submateriais
-  c4: "C4",
-  carcacaCarga: "Carcaça de Carga",
-  compostoInerte: "Composto Inerte",
-  timerSimples: "Timer Simples",
-  placaPlastico: "Placa de Plástico",
-  matrizCarcaca: "Matriz de Carcaça",
-  circuitoSimples: "Circuito Simples",
-  caixaMedicaPequena: "Caixa Médica Pequena",
-  argila: "Argila",
-  pedacoKevlar: "Pedaço de Kevlar"
+  sucataMetal: "Sucata de Metal",
+  // Componentes SMG
+  canoSmg: "Cano de Submetralhadora",
+  carregadorSmg: "Carregador de Submetralhadora",
+  coronhaSmg: "Coronha de Submetralhadora",
+  ferrolhoSmg: "Ferrolho de Submetralhadora",
+  estruturaArma: "Estrutura de Arma",
+  gatilhoArma: "Gatilho de Arma",
+  percussorArma: "Percussor de Arma",
+  molaRecuperadora: "Mola Recuperadora de Arma",
+  empunhaduraArma: "Empunhadura de Arma"
 };
 
 export function gerarListaItens(itensEscolhidos) {
@@ -48,7 +27,6 @@ export function gerarListaItens(itensEscolhidos) {
     const itemKey = getItemKeyByNome(nome);
     const valorItem = quantidade * (DataStore.precos[itemKey] || 0);
 
-    // Só exibir valor se for maior que zero
     if (valorItem > 0) {
       return `<li>🔹${item} - $ ${formatCurrency(valorItem)}</li>`;
     } else {
@@ -78,11 +56,10 @@ export function gerarTabelaHierarquica(itensEscolhidos, receitasUsadas) {
       <h3>📋 Hierarquia de Materiais</h3>
   `;
 
-  // Para cada item escolhido, mostrar sua hierarquia
   itensEscolhidos.forEach(item => {
     const { quantidade, nome } = parseItemString(item);
     const itemKey = getItemKeyByNome(nome);
-    
+
     if (!itemKey || !receitasUsadas[itemKey]) return;
 
     html += `
@@ -93,9 +70,7 @@ export function gerarTabelaHierarquica(itensEscolhidos, receitasUsadas) {
           <ul>
     `;
 
-    // Mostrar submatérias diretas
     Object.entries(receitasUsadas[itemKey]).forEach(([mat, qtd]) => {
-      if (mat === 'cripto') return;
       const totalQtd = qtd * quantidade;
       const nomeMat = materialNomes[mat] || DataStore.itens[mat]?.nome || mat;
       html += `<li>${nomeMat}: ${totalQtd}</li>`;
@@ -103,34 +78,31 @@ export function gerarTabelaHierarquica(itensEscolhidos, receitasUsadas) {
 
     html += `</ul></div>`;
 
-    // Verificar se há submateriais para exibir
-    const temSubmateriais = Object.entries(receitasUsadas[itemKey]).some(([mat, qtd]) => 
-      mat !== 'cripto' && receitasUsadas[mat]
+    const temSubmateriais = Object.entries(receitasUsadas[itemKey]).some(([mat]) =>
+      receitasUsadas[mat]
     );
 
     if (temSubmateriais) {
-      // Mostrar como cada submatéria é feita
       html += `<div class="nivel-2"><h5>🔧 Submatérias:</h5>`;
-      
+
       Object.entries(receitasUsadas[itemKey]).forEach(([mat, qtd]) => {
-        if (mat === 'cripto' || !receitasUsadas[mat]) return;
-        
+        if (!receitasUsadas[mat]) return;
+
         const totalQtd = qtd * quantidade;
         const nomeMat = materialNomes[mat] || DataStore.itens[mat]?.nome || mat;
-        
+
         html += `
           <div class="submaterial">
             <strong>${nomeMat} (${totalQtd}x):</strong>
             <ul>
         `;
-        
+
         Object.entries(receitasUsadas[mat]).forEach(([subMat, subQtd]) => {
-          if (subMat === 'cripto') return;
           const totalSubQtd = subQtd * totalQtd;
           const nomeSubMat = materialNomes[subMat] || subMat;
           html += `<li>${nomeSubMat}: ${totalSubQtd}</li>`;
         });
-        
+
         html += `</ul></div>`;
       });
 
@@ -145,18 +117,17 @@ export function gerarTabelaHierarquica(itensEscolhidos, receitasUsadas) {
 }
 
 export function gerarResumoValor(valorTotal) {
-  // Só exibir valor total se for maior que zero
   if (valorTotal > 0) {
     return `
       <div class="flex-container">
         <div class="flex-item green">
-          <h4>💰 Valor Total</h4>
+          <h4>💰 Cobrar do Cliente</h4>
           <p>$ ${formatCurrency(valorTotal)}</p>
         </div>
       </div>
     `;
   }
-  
+
   return '';
 }
 

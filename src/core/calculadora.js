@@ -3,8 +3,7 @@ import { gerarListaItens, gerarTabelaMateriais, gerarTabelaHierarquica, gerarRes
 import { getItemKeyByNome, parseItemString } from "./utils.js";
 
 export function calcular() {
-  const usarCripto = document.getElementById("usar-cripto").checked;
-  const receitasUsadas = usarCripto ? DataStore.receitasComCripto : DataStore.receitas;
+  const receitasUsadas = DataStore.receitas;
 
   esconderCategorias();
   
@@ -90,8 +89,6 @@ function calcularMateriaisRecursivo(itemKey, quantidade, receitasUsadas) {
   }
 
   for (const [mat, qtd] of Object.entries(receitasUsadas[itemKey])) {
-    if (mat === 'cripto') continue;
-    
     const total = qtd * quantidade;
     
     // Se o material tem receita (é uma submatéria), calcular recursivamente

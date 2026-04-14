@@ -1,10 +1,6 @@
 {
-  "pistolas": {
-    "nome": "Pistolas",
-    "ico": "images/pistolas.png"
-  },
-  "outros": {
-    "nome": "Outros",
-    "ico": "images/outros.png"
+  "smgs": {
+    "nome": "SMGs",
+    "ico": "images/subs.png"
   }
 }

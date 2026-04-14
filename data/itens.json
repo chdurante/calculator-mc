@@ -1,62 +1,57 @@
 {
-    "beretta": {
-        "nome": "Beretta",
-        "categoria": "pistolas",
-        "ico": "images/beretta.png"
+    "thompson": {
+        "nome": "Thompson",
+        "categoria": "smgs",
+        "ico": "images/thompson.png"
     },
-    "algema": {
-        "nome": "Algema",
-        "categoria": "outros",
-        "ico": "images/algema.png"
+    "mac10": {
+        "nome": "MAC-10",
+        "categoria": "smgs",
+        "ico": "images/mac10.png"
     },
-    "c4": {
-        "nome": "C4",
-        "categoria": "outros",
-        "ico": "images/c4.png"
-    },
-    "carcacaCarga": {
-        "nome": "Carcaça de Carga",
+    "canoSmg": {
+        "nome": "Cano de Submetralhadora",
         "categoria": "submateriais",
-        "ico": "images/carcacaCarga.png"
+        "ico": "images/canoSmg.png"
     },
-    "compostoInerte": {
-        "nome": "Composto Inerte",
+    "carregadorSmg": {
+        "nome": "Carregador de Submetralhadora",
         "categoria": "submateriais",
-        "ico": "images/compostoInerte.png"
+        "ico": "images/carregadorSmg.png"
     },
-    "timerSimples": {
-        "nome": "Timer Simples",
+    "coronhaSmg": {
+        "nome": "Coronha de Submetralhadora",
         "categoria": "submateriais",
-        "ico": "images/timerSimples.png"
+        "ico": "images/coronhaSmg.png"
     },
-    "placaPlastico": {
-        "nome": "Placa de Plástico",
+    "ferrolhoSmg": {
+        "nome": "Ferrolho de Submetralhadora",
         "categoria": "submateriais",
-        "ico": "images/placaPlastico.png"
+        "ico": "images/ferrolhoSmg.png"
     },
-    "matrizCarcaca": {
-        "nome": "Matriz de Carcaça",
+    "estruturaArma": {
+        "nome": "Estrutura de Arma",
         "categoria": "submateriais",
-        "ico": "images/matrizCarcaca.png"
+        "ico": "images/estruturaArma.png"
     },
-    "circuitoSimples": {
-        "nome": "Circuito Simples",
+    "gatilhoArma": {
+        "nome": "Gatilho de Arma",
         "categoria": "submateriais",
-        "ico": "images/circuitoSimples.png"
+        "ico": "images/gatilhoArma.png"
     },
-    "caixaMedicaPequena": {
-        "nome": "Caixa Médica Pequena",
-        "categoria": "materiaisBasicos",
-        "ico": "images/caixaMedicaPequena.png"
+    "percussorArma": {
+        "nome": "Percussor de Arma",
+        "categoria": "submateriais",
+        "ico": "images/percussorArma.png"
     },
-    "argila": {
-        "nome": "Argila",
-        "categoria": "materiaisBasicos",
-        "ico": "images/argila.png"
+    "molaRecuperadora": {
+        "nome": "Mola Recuperadora de Arma",
+        "categoria": "submateriais",
+        "ico": "images/molaRecuperadora.png"
     },
-    "pedacoKevlar": {
-        "nome": "Pedaço de Kevlar",
-        "categoria": "materiaisBasicos",
-        "ico": "images/pedacoKevlar.png"
+    "empunhaduraArma": {
+        "nome": "Empunhadura de Arma",
+        "categoria": "submateriais",
+        "ico": "images/empunhaduraArma.png"
     }
 }
