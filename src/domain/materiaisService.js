@@ -1,19 +1,16 @@
 export const DataStore = {
   receitas: {},
-  receitasComCripto: {},
-  reciclaveis: {},
   precos: {},
+  precosParceria: {},
   itens: {},
-  categorias: {},
-  itensCompra: []  
+  categorias: {}
 };
 
 export async function carregarDados() {
   const arquivos = [
     ["receitas", "receitas.json"],
-    ["receitasComCripto", "receitasComCripto.json"],
-    ["reciclaveis", "reciclaveis.json"],
     ["precos", "precos.json"],
+    ["precosParceria", "precosParceria.json"],
     ["itens", "itens.json"],
     ["categorias", "categorias.json"]
   ];
@@ -25,6 +22,3 @@ export async function carregarDados() {
   );
 }
 
-export async function carregarDadosCompra() {
-  DataStore.itensCompra = await fetch("data/compra.json").then(res => res.json()).then(res => res.itensCompra);
-}

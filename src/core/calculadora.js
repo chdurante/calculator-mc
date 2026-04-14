@@ -3,6 +3,8 @@ import { gerarListaItens, gerarTabelaMateriais, gerarTabelaHierarquica, gerarRes
 import { getItemKeyByNome, parseItemString } from "./utils.js";
 
 export function calcular() {
+  const comParceria = document.getElementById("com-parceria").checked;
+  const precosUsados = comParceria ? DataStore.precosParceria : DataStore.precos;
   const receitasUsadas = DataStore.receitas;
 
   esconderCategorias();
@@ -30,16 +32,15 @@ export function calcular() {
       return;
     }
 
-    const valorTotal = calcularValorTotal(itensEscolhidos);
+    const valorTotal = calcularValorTotal(itensEscolhidos, precosUsados);
     resultDiv.innerHTML = `
       <h3>Relatório de Produção</h3>
-      <p><strong>🛠️ Itens Produzidos:</strong></p>
-      <ul>${gerarListaItens(itensEscolhidos)}</ul>
-      <p><strong>📦 Total Geral:</strong> ${totalItens} itens</p>
-      ${gerarTabelaHierarquica(itensEscolhidos, receitasUsadas)}
-      <h3>📊 Total de Materiais Básicos</h3>
-      ${gerarTabelaMateriais(totalMateriais)}
       ${gerarResumoValor(valorTotal)}
+      <div class="section-label">🛠️ Itens Produzidos</div>
+      <div class="itens-produzidos">${gerarListaItens(itensEscolhidos, precosUsados)}</div>
+      ${gerarTabelaHierarquica(itensEscolhidos, receitasUsadas)}
+      <div class="section-label">📦 Materiais Necessários</div>
+      ${gerarTabelaMateriais(totalMateriais)}
     `;
   }, 100);
 }
@@ -106,10 +107,10 @@ function calcularMateriaisRecursivo(itemKey, quantidade, receitasUsadas) {
   return materiais;
 }
 
-function calcularValorTotal(itensEscolhidos) {
+function calcularValorTotal(itensEscolhidos, precos) {
   return itensEscolhidos.reduce((acc, item) => {
     const { quantidade, nome } = parseItemString(item);
     const itemKey = getItemKeyByNome(nome);
-    return acc + quantidade * (DataStore.precos[itemKey] || 0);
+    return acc + quantidade * (precos[itemKey] || 0);
   }, 0);
 }

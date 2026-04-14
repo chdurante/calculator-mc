@@ -21,33 +21,40 @@ const materialNomes = {
   empunhaduraArma: "Empunhadura de Arma"
 };
 
-export function gerarListaItens(itensEscolhidos) {
+export function gerarListaItens(itensEscolhidos, precos) {
   return itensEscolhidos.map(item => {
     const { quantidade, nome } = parseItemString(item);
     const itemKey = getItemKeyByNome(nome);
-    const valorItem = quantidade * (DataStore.precos[itemKey] || 0);
+    const ico = DataStore.itens[itemKey]?.ico || "";
+    const valorItem = quantidade * (precos[itemKey] || 0);
 
-    if (valorItem > 0) {
-      return `<li>🔹${item} - $ ${formatCurrency(valorItem)}</li>`;
-    } else {
-      return `<li>🔹${item}</li>`;
-    }
+    return `
+      <div class="item-produzido">
+        ${ico ? `<img src="${ico}" alt="${nome}" onerror="this.style.display='none'">` : ""}
+        <div class="item-produzido-info">
+          <span class="item-produzido-nome">${nome}</span>
+          <span class="item-produzido-qty">${quantidade}x</span>
+        </div>
+        ${valorItem > 0 ? `<span class="item-produzido-valor">$ ${formatCurrency(valorItem)}</span>` : ""}
+      </div>
+    `;
   }).join("");
 }
 
 export function gerarTabelaMateriais(totalMateriais) {
-  let html = `
-    <table class="result-table">
-      <tr><th>Material</th><th>Quantidade</th></tr>
-  `;
+  const linhas = Object.entries(totalMateriais)
+    .sort((a, b) => b[1] - a[1])
+    .map(([mat, qtd]) => {
+      const nome = materialNomes[mat] || mat;
+      return `
+        <div class="material-row">
+          <span class="material-nome">${nome}</span>
+          <span class="material-qtd">${qtd.toLocaleString("pt-BR")}</span>
+        </div>
+      `;
+    }).join("");
 
-  for (const mat in totalMateriais) {
-    const nome = materialNomes[mat] || mat;
-    html += `<tr><td>${nome}</td><td>${totalMateriais[mat]}</td></tr>`;
-  }
-
-  html += `</table>`;
-  return html;
+  return `<div class="materiais-grid">${linhas}</div>`;
 }
 
 export function gerarTabelaHierarquica(itensEscolhidos, receitasUsadas) {
@@ -119,15 +126,12 @@ export function gerarTabelaHierarquica(itensEscolhidos, receitasUsadas) {
 export function gerarResumoValor(valorTotal) {
   if (valorTotal > 0) {
     return `
-      <div class="flex-container">
-        <div class="flex-item green">
-          <h4>💰 Cobrar do Cliente</h4>
-          <p>$ ${formatCurrency(valorTotal)}</p>
-        </div>
+      <div class="resumo-valor">
+        <span class="resumo-label">💰 Cobrar do Cliente</span>
+        <span class="resumo-preco">$ ${formatCurrency(valorTotal)}</span>
       </div>
     `;
   }
-
   return '';
 }
 
