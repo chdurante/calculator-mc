@@ -1,23 +1,23 @@
 {
   "thompson": {
     "estruturaArma": 1,
-    "canoSmg": 1,
-    "carregadorSmg": 1,
-    "coronhaSmg": 1,
-    "ferrolhoSmg": 1,
     "gatilhoArma": 1,
     "percussorArma": 1,
-    "molaRecuperadora": 1
+    "molaRecuperadora": 1,
+    "canoSmg": 1,
+    "ferrolhoSmg": 1,
+    "carregadorSmg": 1,
+    "coronhaSmg": 1
   },
   "mac10": {
     "estruturaArma": 1,
-    "canoSmg": 1,
-    "carregadorSmg": 1,
-    "coronhaSmg": 1,
-    "ferrolhoSmg": 1,
     "gatilhoArma": 1,
     "percussorArma": 1,
-    "molaRecuperadora": 1
+    "molaRecuperadora": 1,
+    "canoSmg": 1,
+    "ferrolhoSmg": 1,
+    "carregadorSmg": 1,
+    "coronhaSmg": 1
   },
   "canoSmg": {
     "ferro": 220,
@@ -27,7 +27,7 @@
   "carregadorSmg": {
     "ferro": 160,
     "aluminio": 100,
-    "plastico": 90
+    "plastico": 80
   },
   "coronhaSmg": {
     "aluminio": 150,
@@ -35,7 +35,7 @@
     "borracha": 90
   },
   "ferrolhoSmg": {
-    "ferro": 225,
+    "ferro": 220,
     "aluminio": 140,
     "sucataMetal": 80
   },
