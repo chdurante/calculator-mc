@@ -232,32 +232,115 @@ button:hover {
 .materiais-grid {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   margin-top: 4px;
+}
+
+.materiais-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 14px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #888;
 }
 
 .material-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.05);
   border-radius: 6px;
-  padding: 8px 14px;
+  padding: 9px 14px;
   font-size: 14px;
 }
 
 .material-row:nth-child(even) {
-  background: rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.08);
+}
+
+.material-sucata {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: 4px;
+  padding-top: 12px;
+  background: rgba(255,255,255,0.02) !important;
 }
 
 .material-nome {
   color: #ddd;
+  font-weight: bold;
+}
+
+.material-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 160px;
+  justify-content: flex-end;
+}
+
+.materiais-header .material-right {
+  gap: 20px;
+  min-width: 160px;
+  justify-content: flex-end;
 }
 
 .material-qtd {
   font-weight: bold;
   color: #ffcc00;
   font-size: 15px;
+  min-width: 60px;
+  text-align: right;
+}
+
+.material-custo {
+  font-size: 13px;
+  color: #aaa;
+  min-width: 80px;
+  text-align: right;
+}
+
+.material-custo-nd {
+  color: #555;
+}
+
+/* Total de materiais */
+.materiais-total {
+  margin-top: 12px;
+  background: linear-gradient(135deg, rgba(255,204,0,0.1), rgba(255,150,0,0.08));
+  border: 1px solid rgba(255,204,0,0.4);
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.materiais-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.materiais-total-row.destaque {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffcc00;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255,204,0,0.3);
+}
+
+.materiais-obs {
+  display: block !important;
+  font-size: 11px !important;
+  color: #666 !important;
+  font-weight: normal !important;
+  margin: 0 !important;
+  text-align: right;
 }
 
 .result-table {

@@ -1,65 +1,67 @@
 {
-    "thompson": {
-        "canoSmg": 1,
-        "carregadorSmg": 1,
-        "coronhaSmg": 1,
-        "ferrolhoSmg": 1,
-        "gatilhoArma": 1,
-        "percussorArma": 1,
-        "molaRecuperadora": 1
-    },
-    "mac10": {
-        "estruturaArma": 1,
-        "gatilhoArma": 1,
-        "percussorArma": 1,
-        "molaRecuperadora": 1,
-        "canoSmg": 1,
-        "ferrolhoSmg": 1,
-        "carregadorSmg": 1
-    },
-    "canoSmg": {
-        "ferro": 220,
-        "cobre": 100,
-        "aluminio": 80
-    },
-    "carregadorSmg": {
-        "ferro": 160,
-        "aluminio": 100,
-        "plastico": 90
-    },
-    "coronhaSmg": {
-        "aluminio": 150,
-        "plastico": 100,
-        "borracha": 90
-    },
-    "ferrolhoSmg": {
-        "ferro": 225,
-        "aluminio": 140,
-        "sucataMetal": 80
-    },
-    "estruturaArma": {
-        "ferro": 240,
-        "aluminio": 180,
-        "sucataMetal": 120
-    },
-    "gatilhoArma": {
-        "ferro": 80,
-        "cobre": 60,
-        "plastico": 60
-    },
-    "percussorArma": {
-        "ferro": 80,
-        "cobre": 60,
-        "sucataMetal": 60
-    },
-    "molaRecuperadora": {
-        "ferro": 100,
-        "borracha": 80,
-        "sucataMetal": 60
-    },
-    "empunhaduraArma": {
-        "plastico": 120,
-        "borracha": 100,
-        "aluminio": 80
-    }
+  "thompson": {
+    "estruturaArma": 1,
+    "canoSmg": 1,
+    "carregadorSmg": 1,
+    "coronhaSmg": 1,
+    "ferrolhoSmg": 1,
+    "gatilhoArma": 1,
+    "percussorArma": 1,
+    "molaRecuperadora": 1
+  },
+  "mac10": {
+    "estruturaArma": 1,
+    "canoSmg": 1,
+    "carregadorSmg": 1,
+    "coronhaSmg": 1,
+    "ferrolhoSmg": 1,
+    "gatilhoArma": 1,
+    "percussorArma": 1,
+    "molaRecuperadora": 1
+  },
+  "canoSmg": {
+    "ferro": 220,
+    "cobre": 100,
+    "aluminio": 80
+  },
+  "carregadorSmg": {
+    "ferro": 160,
+    "aluminio": 100,
+    "plastico": 90
+  },
+  "coronhaSmg": {
+    "aluminio": 150,
+    "plastico": 100,
+    "borracha": 90
+  },
+  "ferrolhoSmg": {
+    "ferro": 225,
+    "aluminio": 140,
+    "sucataMetal": 80
+  },
+  "estruturaArma": {
+    "ferro": 240,
+    "aluminio": 180,
+    "sucataMetal": 120
+  },
+  "gatilhoArma": {
+    "ferro": 80,
+    "cobre": 60,
+    "plastico": 60
+  },
+  "percussorArma": {
+    "ferro": 80,
+    "cobre": 60,
+    "sucataMetal": 60
+  },
+  "molaRecuperadora": {
+    "ferro": 100,
+    "borracha": 80,
+    "sucataMetal": 60
+  },
+  "empunhaduraArma": {
+    "plastico": 120,
+    "borracha": 100,
+    "aluminio": 80
+  }
 }

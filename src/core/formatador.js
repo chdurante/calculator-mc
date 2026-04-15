@@ -41,20 +41,67 @@ export function gerarListaItens(itensEscolhidos, precos) {
   }).join("");
 }
 
+const ORDEM_MATERIAIS = ["ferro", "cobre", "aluminio", "plastico", "borracha", "sucataMetal"];
+const CUSTO_POR_UNIDADE = 6;
+
 export function gerarTabelaMateriais(totalMateriais) {
-  const linhas = Object.entries(totalMateriais)
-    .sort((a, b) => b[1] - a[1])
-    .map(([mat, qtd]) => {
-      const nome = materialNomes[mat] || mat;
+  let totalUnidadesSemSucata = 0;
+  let totalCustoSemSucata = 0;
+
+  const linhas = ORDEM_MATERIAIS
+    .filter(mat => totalMateriais[mat])
+    .map(mat => {
+      const qtd = totalMateriais[mat];
+      const nome = materialNomes[mat];
+      const isSucata = mat === "sucataMetal";
+      const custo = isSucata ? null : qtd * CUSTO_POR_UNIDADE;
+
+      if (!isSucata) {
+        totalUnidadesSemSucata += qtd;
+        totalCustoSemSucata += custo;
+      }
+
       return `
-        <div class="material-row">
+        <div class="material-row ${isSucata ? "material-sucata" : ""}">
           <span class="material-nome">${nome}</span>
-          <span class="material-qtd">${qtd.toLocaleString("pt-BR")}</span>
+          <div class="material-right">
+            <span class="material-qtd">${qtd.toLocaleString("pt-BR")}</span>
+            ${!isSucata
+              ? `<span class="material-custo">$ ${formatCurrency(custo)}</span>`
+              : `<span class="material-custo material-custo-nd">—</span>`
+            }
+          </div>
         </div>
       `;
     }).join("");
 
-  return `<div class="materiais-grid">${linhas}</div>`;
+  const totalBlock = totalUnidadesSemSucata > 0 ? `
+    <div class="materiais-total">
+      <div class="materiais-total-row">
+        <span>Total a comprar</span>
+        <span>${totalUnidadesSemSucata.toLocaleString("pt-BR")} unidades</span>
+      </div>
+      <div class="materiais-total-row destaque">
+        <span>💸 Custo total</span>
+        <span>$ ${formatCurrency(totalCustoSemSucata)}</span>
+      </div>
+      <p class="materiais-obs">* Sucata de Metal não incluída no custo</p>
+    </div>
+  ` : "";
+
+  return `
+    <div class="materiais-grid">
+      <div class="materiais-header">
+        <span>Material</span>
+        <div class="material-right">
+          <span>Qtd</span>
+          <span>Custo (@$6/un)</span>
+        </div>
+      </div>
+      ${linhas}
+    </div>
+    ${totalBlock}
+  `;
 }
 
 export function gerarTabelaHierarquica(itensEscolhidos, receitasUsadas) {
